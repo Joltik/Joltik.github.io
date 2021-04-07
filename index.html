@@ -7,36 +7,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>恋爱计时器</title>
+    <title>高昇❤️毕道蓉</title>
     <style>
         body {
-            -webkit-font-smoothing: antialiased;
-            font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
             background-image: url('bg.jpg');
-            font-size: 85%;
-            margin: 0;
+            background-size: 100%;
+            background-repeat: no-repeat;
         }
-        
-        h2 {
-            font-size: 220%;
-            font-weight: 400;
-        }
-        
+
         .content {
             position: absolute;
             width: 100%;
-            top: 40%;
+            top: 20%;
             transform: translate(0, -50%);
             text-align: center;
         }
-        
+
         .timer {
-            font-size: 180%;
+            font-size: 120%;
             line-height: 1.5;
             margin: 1em 0;
         }
-        
-        .timer b {
+
+        .timer label {
             color: rgb(253, 99, 125);
         }
     </style>
@@ -44,37 +37,42 @@
 
 <body>
     <div class="content">
-        <h2>呆呆，我们已经在一起了</h2>
+        <h1>高昇❤️毕道蓉</h1>
+        <h3>我们已经在一起</h3>
         <div class="timer">
-            <b id="d"></b> Days <b id="h"></b> Hours <b id="m"></b> Minutes <b id="s"></b> Seconds
+            <span class="SiteRunningTime"><label class="year">0</label> 年 <label class="month">0</label> 个月 <label
+                    class="day">0</label> 天 <label class="hour">0</label> 个小时 <label class="minute">0</label> 分钟 <label
+                    class="second">0</label> 秒 </span>
         </div>
     </div>
 
     <script>
-        function timer() {
-            var start = new Date(2013, 12, 1); // 2015.7.2
-            var t = new Date() - start;
-            var h = ~~(t / 1000 / 60 / 60 % 24);
-            if (h < 10) {
-                h = "0" + h;
-            }
-            var m = ~~(t / 1000 / 60 % 60);
-            if (m < 10) {
-                m = "0" + m;
-            }
-
-            var s = ~~(t / 1000 % 60);
-            if (s < 10) {
-                s = "0" + s;
-            }
-            document.getElementById('d').innerHTML = ~~(t / 1000 / 60 / 60 / 24);
-            document.getElementById('h').innerHTML = h;
-            document.getElementById('m').innerHTML = m;
-            document.getElementById('s').innerHTML = s;
-        }
-        timer();
-        setInterval(timer, 1000);
+        var startTime = "2018-07-15 21:29";
+        var calculationTime = function(startTime) {
+            var s1 = new Date(startTime.replace(/-/g, "/")),
+                s2 = new Date(),
+                runTime = parseInt((s2.getTime() - s1.getTime()) / 1000);
+            var year = Math.floor(runTime / 86400 / 365);
+            runTime = runTime % (86400 * 365);
+            var month = Math.floor(runTime / 86400 / 30);
+            runTime = runTime % (86400 * 30);
+            var day = Math.floor(runTime / 86400);
+            runTime = runTime % 86400;
+            var hour = Math.floor(runTime / 3600);
+            runTime = runTime % 3600;
+            var minute = Math.floor(runTime / 60);
+            runTime = runTime % 60;
+            var second = runTime;
+            document.querySelector(".SiteRunningTime > .year").innerText = year;
+            document.querySelector(".SiteRunningTime > .month").innerText = month;
+            document.querySelector(".SiteRunningTime > .day").innerText = day;
+            document.querySelector(".SiteRunningTime > .hour").innerText = hour;
+            document.querySelector(".SiteRunningTime > .minute").innerText = minute;
+            document.querySelector(".SiteRunningTime > .second").innerText = second
+        };
+        setInterval("calculationTime(startTime)", 1000);
     </script>
+
 </body>
 
 </html>
